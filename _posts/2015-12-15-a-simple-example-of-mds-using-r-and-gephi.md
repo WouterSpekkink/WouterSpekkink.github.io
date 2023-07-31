@@ -152,6 +152,7 @@ Like I said, this is a bit of a silly example, but I plan to come up with more i
 
 Hope you enjoyed this!
 
+
 BTW: Some time ago I created a plugin for Gephi that does MDS, using the path distances between the nodes of a graph as its input. The plugin produces coordinates that can be used to create layouts with the MDS layout algorithm. [See here for more details][8].
 
 [1]: https://www.r-project.org/
