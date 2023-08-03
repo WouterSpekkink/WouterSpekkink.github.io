@@ -2,8 +2,8 @@
 layout: post
 title: "Using LLMs with retrieval augmentation through LangChain"
 date: 2023-08-02 9:30 
-categories: Software LLM langchain Python
-tags: Software LLM langchain Python
+categories: Software 
+tags: LLM langchain Python
 ---
 
 ## Intro 
