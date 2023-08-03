@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Simple universal bookmarking"
-date: 2023-08-02 9:30 
+date: 2023-08-03 9:30 
 categories: Software
 tags: bash dmenu Linux
 ---
