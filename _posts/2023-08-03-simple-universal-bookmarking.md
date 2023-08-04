@@ -18,9 +18,9 @@ I have converted my qutebrowser quickmarks to Nyxt bookmarks multiple times, but
 
 ## A simple solution
 I had a vague memory of Luke Smith talking about a simple solution for universal bookmarking that he uses.
-This solution makes use of lightweight tools, such as [xdotool][7], [xclip][8] and [dmenu][9].
 With 'universal bookmarking' I mean one bookmarking system that can be used across different browsers.
-Luke Smith discusses this simple solution in a [Youtube video][4].
+Luke Smith discusses this in a [Youtube video][4].
+His makes use of lightweight tools, such as [xdotool][7], [xclip][8] and [dmenu][9].
 I also found [this repo][5] with a script that expands on Luke's idea a bit.
 I played around with this expanded solution and then tweaked it further to have something that I am happy about.
 
@@ -38,7 +38,7 @@ xdotool type $(grep -v '^#' ~/.local/share/bookmarks | dmenu -l 20 -F | cut -d' 
 ```
 
 The script finds all the lines in my bookmarks file (a plain text file) that do not start with a `#` (a comment), pipes these into dmenu, allowing me to select one of the bookmarks recorded in the file, and this then gets typed into whatever text field I have selected at the time (using `xdotool type`).
-I include titles and tags with my bookmarks, so dmenu should only output the url address itself, which is what the `cut -d' ' -fq` is for.
+I include titles and tags with my bookmarks, so dmenu should only output the url address itself, which is what the `cut -d' ' -f1` is for.
 
 See the example of an url, as it is recorded in my bookmarks file, below.
 ``` txt
