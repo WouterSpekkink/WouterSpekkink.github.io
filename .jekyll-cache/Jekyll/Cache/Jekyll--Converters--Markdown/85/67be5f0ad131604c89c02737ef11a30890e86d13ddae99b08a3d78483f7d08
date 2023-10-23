@@ -1,0 +1,11 @@
+I"‰<h2 id="edit-2023-01-03">EDIT (2023-01-03)</h2>
+<p>I have recently migrated from Doom emacs to a vanilla emacs config. 
+What I like about the vanilla config is that I am more in control of what it does.
+Doom emacs, in some respects, was a bit of a black box to me. 
+Also, Doom emacs does a lot of things I do not actually need or want.
+In my original post, I linked to my <a href="https://github.com/WouterSpekkink/dotfiles">dot files</a>, which included my doom emacs config.
+The doom config files are still there, but not in the <code class="language-plaintext highlighter-rouge">old_doom_config</code> branch, instead of the <code class="language-plaintext highlighter-rouge">master</code> branch. 
+My vanilla config maintains (I think) all of what I describe in my post.
+However, the config looks different in most places, for example because I could no longer make use of the Doom emacs macros.</p>
+
+:ET

@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <!-- Head -->
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">    <!-- Metadata, OpenGraph and Schema.org -->
+    
+
+    <!-- Standard metadata -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Retrieval augmentation with literature | Wouter A. H. Spekkink</title>
+    <meta name="author" content="Wouter A. H. Spekkink">
+    <meta name="description" content="My personal website.
+">
+
+
+    <!-- Bootstrap & MDB -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-DF7Zhf293AJxJNTmh5zhoYYIMs2oXitRfBjY+9L//AY=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/css/mdb.min.css" integrity="sha256-jpjYvU3G3N6nrrBwXJoVEYI/0zw8htfFnhT9ljN3JJw=" crossorigin="anonymous">
+
+    <!-- Bootstrap Table -->
+    <link defer rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.css">
+
+    <!-- Fonts & Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.1/css/academicons.min.css" integrity="sha256-i1+4qU2G2860dGGIOJscdC30s9beBXjFfzjWLjBRsBg=" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons">
+
+    <!-- Code Syntax Highlighting -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/github.css" media="" id="highlight_theme_light">
+
+    
+
+    <!-- Styles -->
+    
+    <link rel="stylesheet" href="/assets/css/main.css?d41d8cd98f00b204e9800998ecf8427e">
+    <link rel="canonical" href="http://localhost:4000/blog/2023/retrieval-augmentation-with-literature/">
+
+    <!-- Dark Mode -->
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/native.css" media="none" id="highlight_theme_dark">
+    <script src="/assets/js/theme.js?96d6b3e1c3604aca8b6134c7afdd5db6"></script>
+    <script src="/assets/js/dark_mode.js?9b17307bb950ffa2e34be0227f53558f"></script>
+    
+
+  </head>
+
+  <!-- Body -->
+  <body class="fixed-top-nav ">
+
+    <!-- Header -->
+    <header>
+
+      <!-- Nav Bar -->
+      <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top">
+        <div class="container">
+          <a class="navbar-brand title font-weight-lighter" href="/"><span class="font-weight-bold">Wouter </span>A. H. Spekkink</a>
+          <!-- Navbar Toggle -->
+          <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar top-bar"></span>
+            <span class="icon-bar middle-bar"></span>
+            <span class="icon-bar bottom-bar"></span>
+          </button>
+
+          <div class="collapse navbar-collapse text-right" id="navbarNav">
+            <ul class="navbar-nav ml-auto flex-nowrap">
+
+              <!-- About -->
+              <li class="nav-item ">
+                <a class="nav-link" href="/">about</a>
+              </li>
+              
+              <!-- Blog -->
+              <li class="nav-item active">
+                <a class="nav-link" href="/blog/">blog<span class="sr-only">(current)</span></a>
+              </li>
+
+              <!-- Other pages -->
+              <li class="nav-item ">
+                <a class="nav-link" href="/publications/">publications</a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="/repositories/">repositories</a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="/cv/">cv</a>
+              </li>
+
+              <!-- Toogle theme mode -->
+              <li class="toggle-container">
+                <button id="light-toggle" title="Change theme">
+                  <i class="fas fa-moon"></i>
+                  <i class="fas fa-sun"></i>
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Scrolling Progress Bar -->
+      <progress id="progress" value="0">
+        <div class="progress-container">
+          <span class="progress-bar"></span>
+        </div>
+      </progress>
+    </header>
+
+
+    <!-- Content -->
+    <div class="container mt-5">
+      
+        <!-- _layouts/post.html -->
+
+<div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Retrieval augmentation with literature</h1>
+    <p class="post-meta">October 23, 2023</p>
+    <p class="post-tags">
+      <a href="/blog/2023"> <i class="fas fa-calendar fa-sm"></i> 2023 </a>
+        ·  
+        <a href="/blog/tag/llm">
+          <i class="fas fa-hashtag fa-sm"></i> LLM</a>  
+          <a href="/blog/tag/langchain">
+          <i class="fas fa-hashtag fa-sm"></i> langchain</a>  
+          <a href="/blog/tag/python">
+          <i class="fas fa-hashtag fa-sm"></i> Python</a>  
+          
+        ·  
+        <a href="/blog/category/software">
+          <i class="fas fa-tag fa-sm"></i> Software</a>  
+          
+
+    </p>
+  </header>
+
+  <article class="post-content">
+    
+    <div id="markdown-content">
+      <h2 id="intro">Intro</h2>
+<p>In the summer, I started a series of posts on using the <a href="https://python.langchain.com/docs/get_started/introduction.html" rel="external nofollow noopener" target="_blank">LangChain</a> framework.
+This is the second post in that series. 
+In the <a href="/blog/2023/using-llms-with-retrieval-augmentation-through-langchain/">first post</a> I introduced the idea of retrieval augmentation and vector stores and I explained the Python scripts that I use to create and update vector stores.
+In this post I go into the actual use of retrieval augmentation.
+The example I focus on here is the use of retrieval augmentation to chat with OpenAI’s Large Language Models (LLMs) about the literature on my Zotero library.</p>
+
+<h2 id="chainlit">Chainlit</h2>
+<p>The initial LangChain tools that I built were simple command-line tools. 
+I soon discovered a framework called <a href="https://github.com/Chainlit/chainlit" rel="external nofollow noopener" target="_blank">Chainlit</a>, which allows you to use you browser as an interface for your LangChain apps, and it comes with several other goodies.
+To be able to follow along with the examples below, you will need to install the Chainlit Python module.
+Chainlit is in development and future updates might break some of the things that I showcase in this post.
+The version of Chainlit that I have installed at the time of writing this post is 0.7.1.</p>
+
+<h2 id="a-short-recap">A short recap</h2>
+<p>Without going into too much detail, a short recap of the idea of retrieval augmentation might come in useful.
+Our goal is to chat with LLMs about the contents of the literature in our Zotero library.
+This is useful for multiple things, such as quickly consulting our literature on concepts that we are interested and finding back the papers in which these concepts are described, but that we may have forgotten about.
+Given that can have a conversation with an LLM about our literature and that the LLM to some extent memorizes what has been said before in the conversation, we can even chat with LLMs about the relationships between concepts.
+I use this tool, for example, to quickly create notes on concepts that I can integrate in my writings. 
+I also use it when preparing for teaching, for example to quickly compile lecture notes with additional background on the concepts and theories that I am teaching about.
+We can do this with the help of retrieval augmentation.
+When we ask a question, our question gets embedded, that is, it gets converted into a coordinate in a semantic space that we have populated with fragments of texts from the papers we wish to chat about.
+These fragments are stored in our vector store (see <a href="/blog/2023/using-llms-with-retrieval-augmentation-through-langchain/">my previous post on this topic</a>).
+Our tool retrieves fragments of text that have content that is semantically similar to our question. 
+Our tool then includes these fragments of text as context in our question, allowing the LLM we interact with to use this knowledge to answer our question.</p>
+
+<p>The script that I detail below assumes that you have already created a vectorstore that contains the literature from your Zotero library (again, see <a href="/blog/2023/using-llms-with-retrieval-augmentation-through-langchain/">my previous post on this topic</a>).</p>
+
+<h2 id="folder-structure-and-files">Folder structure and files</h2>
+<p>Let us start with the folder structure for our tool.
+In our main folder, we create two subfolders:</p>
+<ol>
+  <li>answers</li>
+  <li>vectorstore</li>
+</ol>
+
+<p>One thing that we can do with retrieval augmentation is to record the actual fragments of text that our tool retrieved, as well as details of the sources that these fragments were retrieved from. 
+I find this extremely useful, because it allows us to have our tool cite its sources, so that we can double check its output.
+To this end, I have my tool write log files in to the answers folder.
+Whenever I start a new chat session, a new log file is created in which the tool records the questions I ask, the answers it gives and then the fragments of text that it used to come to this answer as well as the sources that these fragments are from.</p>
+
+<p>The ‘vectorstore’ folder simply contains the vector store that contains our literature.</p>
+
+<p>In the main folder we also have a few files:</p>
+<ul>
+  <li>ask_cl.py: The actual script that I detail below.
+You can of course give this another name.</li>
+  <li>constants.py: A Python file that just contains our API key (which we do not want to expose, because we do not want to share it with others)</li>
+  <li>chainlit.md: This gets created automatically when you run a chaintlit app for the first time.
+It is a simple readme file that is shown everytime you run your chainlit app and that you can of course adjust to your own needs and wants.</li>
+</ul>
+
+<p>You might have several other files in the folder, such as scripts that I described in my first post of this series.
+However, the ones listed above are the only ones we really need to make the examples below work.</p>
+
+<h2 id="my-script">My script</h2>
+<h3 id="the-modules-that-we-import">The modules that we import</h3>
+<p>Let us go over the main script now: the ask_cl.py script. 
+We’ll first import all the modules that our tool will make use of.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">langchain.chains</span> <span class="kn">import</span> <span class="n">ConversationalRetrievalChain</span>
+<span class="kn">from</span> <span class="n">langchain.memory</span> <span class="kn">import</span> <span class="n">ConversationBufferWindowMemory</span>
+<span class="kn">from</span> <span class="n">langchain.document_transformers</span> <span class="kn">import</span> <span class="n">LongContextReorder</span><span class="p">,</span> <span class="n">EmbeddingsRedundantFilter</span>
+<span class="kn">from</span> <span class="n">langchain.retrievers.document_compressors</span> <span class="kn">import</span> <span class="n">DocumentCompressorPipeline</span>
+<span class="kn">from</span> <span class="n">langchain.retrievers</span> <span class="kn">import</span> <span class="n">ContextualCompressionRetriever</span>
+<span class="kn">from</span> <span class="n">langchain.embeddings</span> <span class="kn">import</span> <span class="n">OpenAIEmbeddings</span>
+<span class="kn">from</span> <span class="n">langchain.chat_models</span> <span class="kn">import</span> <span class="n">ChatOpenAI</span>
+<span class="kn">from</span> <span class="n">langchain.llms</span> <span class="kn">import</span> <span class="n">OpenAI</span>
+<span class="kn">import</span> <span class="n">openai</span>
+<span class="kn">from</span> <span class="n">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
+<span class="kn">import</span> <span class="n">os</span>
+<span class="kn">from</span> <span class="n">langchain.vectorstores</span> <span class="kn">import</span> <span class="n">FAISS</span>
+<span class="kn">from</span> <span class="n">langchain.callbacks</span> <span class="kn">import</span> <span class="n">OpenAICallbackHandler</span>
+<span class="kn">from</span> <span class="n">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">import</span> <span class="n">chainlit</span> <span class="k">as</span> <span class="n">cl</span>
+<span class="kn">from</span> <span class="n">chainlit.input_widget</span> <span class="kn">import</span> <span class="n">Select</span><span class="p">,</span> <span class="n">Slider</span>
+<span class="kn">import</span> <span class="n">textwrap</span>
+<span class="kn">import</span> <span class="n">constants</span>
+<span class="kn">from</span> <span class="n">langchain.prompts</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">ChatPromptTemplate</span><span class="p">,</span>
+    <span class="n">PromptTemplate</span><span class="p">,</span>
+    <span class="n">SystemMessagePromptTemplate</span><span class="p">,</span>
+    <span class="n">AIMessagePromptTemplate</span><span class="p">,</span>
+    <span class="n">HumanMessagePromptTemplate</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="n">langchain.schema</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">AIMessage</span><span class="p">,</span>
+    <span class="n">HumanMessage</span><span class="p">,</span>
+    <span class="n">SystemMessage</span>
+<span class="p">)</span>
+</code></pre></div></div>
+<p>I will go through the various things that we import from top to bottom.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">ConversationalRetrievalChain</code> is a type of chain (imported from LangChain) that does most of the heavy lifting for us when it comes to retrieval augmentation.
+We can include a vector store in this chain, which will be used to retrieve fragments of information that we want to include as context in our questions to the LLM.
+There is also ‘RetrievalChain’ that does just that. 
+What the <code class="language-plaintext highlighter-rouge">ConversationalRetrievalChain</code> adds to this is a chat history, so that we can actually have a conversation with an LLM that then memorizes earliers parts of the conversation.
+See the LangChain docs on the <code class="language-plaintext highlighter-rouge">ConversationalRetrievalChain</code> <a href="https://python.langchain.com/docs/use_cases/question_answering/chat_vector_db" rel="external nofollow noopener" target="_blank">here</a>.</p>
+
+<p>To enable an LLM to memorize our conversation, we also need a memory object that we include in our chain.
+The <code class="language-plaintext highlighter-rouge">ConversationBufferWindowMemory</code> is one of several memory objects that langchain offers. 
+We need one of those to store the chat history of our conversation, so that the LLM that we interact with has access to that history.
+The <code class="language-plaintext highlighter-rouge">ConversationBufferWindowMemory</code> is a kind of sliding window memory that memorizes a limited part of the conversation (see the docs <a href="https://python.langchain.com/docs/modules/memory/types/buffer_window" rel="external nofollow noopener" target="_blank">here</a>).
+This allows our tool to memorize the most recent interactions, without that memory getting too large for our LLM to handle (without exceeding the available context window of the model).</p>
+
+<p>We also import various modules that include utilities that we use to process the fragments that our <code class="language-plaintext highlighter-rouge">ConversationalRetrievalChain</code> retrieves. 
+The background to the <code class="language-plaintext highlighter-rouge">LongContextReorder</code> object could be the topic of its own blog post. 
+It goes back to a finding that is discussed in <a href="https://arxiv.org/abs//2307.03172" rel="external nofollow noopener" target="_blank">this paper</a>, which is that LLMs that are given a long context (basically the information included with the question), tend to get ‘lost in the middle’: They pay more attention to the information that is either in the beginning of the context, or at the end of the context, and information in the middle is not given as much consideration.
+The <code class="language-plaintext highlighter-rouge">LongContextReorder</code> object helps us order the retrieved fragments such that the fragments that it considers to be most important tend to be at the beginning or at the end of the collection of retrieved fragments.
+The <code class="language-plaintext highlighter-rouge">EmbeddingsRedundantFilter</code> filters out redundant fragments if we have multiple fragments that semantically are highly similar. 
+Given that we have only a limited context window to work with, this object helps us to ensure that this context window is not filled with a lot of redundant information.
+The <code class="language-plaintext highlighter-rouge">DocumentCompressorPipeline</code> is an object that allows us to combine these different types of filters in a pipeline.
+The <code class="language-plaintext highlighter-rouge">ContextualCompressionRetriever</code> then allows us to integrate that pipeline in our retrieval chain.
+It is the retriever that we will integrate into our <code class="language-plaintext highlighter-rouge">ConversationalRetrievalChain</code>.</p>
+
+<p>To be able to access OpenAI’s chat models, we import the <code class="language-plaintext highlighter-rouge">ChatOpenAI</code> module from the LangChain framework.
+We also need to use functions from the <code class="language-plaintext highlighter-rouge">OpenAI</code> module, so we import that as well.
+Given that we are working with OpenAI models, we need to import the <code class="language-plaintext highlighter-rouge">openai</code> module from OpenAI itself too.
+We then import the <code class="language-plaintext highlighter-rouge">constants</code> module, which is simply the other Python file in our main folder; the file in which we store our OpenAI API key.
+The <code class="language-plaintext highlighter-rouge">dotenv</code> module allows us to set environment variables, which we use in our script to set our OpenAI API key as an environment variable.
+We also need the <code class="language-plaintext highlighter-rouge">os</code> module to set our environment variable.</p>
+
+<p>The literature that we wish to chat about is recorded in a <code class="language-plaintext highlighter-rouge">FAISS</code> vector store, so we’ll have to import the corresponding module to be able to use it.
+We also need to import the <code class="language-plaintext highlighter-rouge">OpenAIEmbeddings</code> module because when we retrieve fragments from our vector stores, we need to indicate the embeddings model that we used to create the embeddings.</p>
+
+<p>To be honest, I do not know a lot about callback handlers.
+They are apparently functions that are executed in response to specific events or conditions in asynchronous or event-driven programs.
+To the best of my knowledge, we need a callback handler because our Chainlit-powered app will make use of asynchronous programming.
+In our case, we specifically need the <code class="language-plaintext highlighter-rouge">OpenAICallbackHandler</code>, so we import the corresponding module.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">datetime</code> module allows us to get the current date and time, which we will use in the log files that we write to our answers folder for fact checking (see the section on folder structure above).</p>
+
+<p>Since we are building a Chainlit-powered app, we also import the <code class="language-plaintext highlighter-rouge">chainlit</code> module.
+We then import various input widgets from the <code class="language-plaintext highlighter-rouge">chainlit</code> module that allow us to set various settings for our app in the browser interface.
+We will not be doing that much with these settings in this particular example, but in examples that I will discuss in future posts, the ability to change settings on the fly is important.</p>
+
+<p>The remaining imports that we do are all related to <a href="https://python.langchain.com/docs/modules/model_io/prompts/prompt_templates/" rel="external nofollow noopener" target="_blank">prompt templates</a>.
+As described in the LangChain documentation, prompt templates “are pre-defined recipes for generating prompts for language models”.
+As you’ll see in the example below, it allows us to predefine a prompt for the LLMs that we interact with.
+In the prompt template we can also include variables, which allows us ‘dynamically’ insert things in our prompt, such as the question that we asked and the context to that question that consists of the fragments of text we retrieve from our vector store.
+Since our desire is to develop a chat app, we need to use templates that have been specifically designed for chat purposes.
+These templates make use of various schemas that we also need to import.</p>
+
+<h3 id="setting-things-up">Setting things up</h3>
+<p>The remainder of the script consists of four chunks:</p>
+<ol>
+  <li>A chunk that is run when we start the app and in which we do some setup.</li>
+  <li>A chunk that is run when we start a new chat (this does not have to mean that we restart the app).</li>
+  <li>A chunk that is run when we update our chat settings (again, not something that we’ll discuss in detail here, but that we will discuss in more detail in a future post).</li>
+  <li>A chunk that is run when we send a message to the LLM that we are chatting with.</li>
+</ol>
+
+<p>Let’s start with the setting up chunk:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Cleanup function for source strings
+</span><span class="k">def</span> <span class="nf">string_cleanup</span><span class="p">(</span><span class="n">string</span><span class="p">):</span>
+  <span class="sh">"""</span><span class="s">A function to clean up strings in the sources from unwanted symbols</span><span class="sh">"""</span>
+  <span class="k">return</span> <span class="n">string</span><span class="p">.</span><span class="nf">replace</span><span class="p">(</span><span class="sh">"</span><span class="s">{</span><span class="sh">"</span><span class="p">,</span><span class="sh">""</span><span class="p">).</span><span class="nf">replace</span><span class="p">(</span><span class="sh">"</span><span class="s">}</span><span class="sh">"</span><span class="p">,</span><span class="sh">""</span><span class="p">).</span><span class="nf">replace</span><span class="p">(</span><span class="sh">"</span><span class="se">\\</span><span class="sh">"</span><span class="p">,</span><span class="sh">""</span><span class="p">).</span><span class="nf">replace</span><span class="p">(</span><span class="sh">"</span><span class="s">/</span><span class="sh">"</span><span class="p">,</span><span class="sh">""</span><span class="p">)</span>
+
+<span class="c1"># Set OpenAI API Key
+</span><span class="nf">load_dotenv</span><span class="p">()</span>
+<span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="sh">"</span><span class="s">OPENAI_API_KEY</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="n">constants</span><span class="p">.</span><span class="n">APIKEY</span>
+<span class="n">openai</span><span class="p">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="n">constants</span><span class="p">.</span><span class="n">APIKEY</span> 
+
+<span class="c1"># Load FAISS database
+</span><span class="n">embeddings</span> <span class="o">=</span> <span class="nc">OpenAIEmbeddings</span><span class="p">()</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">FAISS</span><span class="p">.</span><span class="nf">load_local</span><span class="p">(</span><span class="sh">"</span><span class="s">./vectorstore/</span><span class="sh">"</span><span class="p">,</span> <span class="n">embeddings</span><span class="p">)</span>
+
+<span class="c1"># Set up callback handler
+</span><span class="n">handler</span> <span class="o">=</span> <span class="nc">OpenAICallbackHandler</span><span class="p">()</span>
+
+<span class="c1"># Set memory
+</span><span class="n">memory</span> <span class="o">=</span> <span class="nc">ConversationBufferWindowMemory</span><span class="p">(</span><span class="n">memory_key</span><span class="o">=</span><span class="sh">"</span><span class="s">chat_history</span><span class="sh">"</span><span class="p">,</span> <span class="n">input_key</span><span class="o">=</span><span class="sh">'</span><span class="s">question</span><span class="sh">'</span><span class="p">,</span> <span class="n">output_key</span><span class="o">=</span><span class="sh">'</span><span class="s">answer</span><span class="sh">'</span><span class="p">,</span> <span class="n">return_messages</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># Customize prompt
+</span><span class="n">system_prompt_template</span> <span class="o">=</span> <span class="p">(</span>
+  <span class="sh">'''</span><span class="s">
+  You are a knowledgeable professor working in academia.
+  Using the provided pieces of context, you answer the questions asked by the user.
+  If you don</span><span class="sh">'</span><span class="s">t know the answer, just say that you don</span><span class="sh">'</span><span class="s">t know, don</span><span class="sh">'</span><span class="s">t try to make up an answer.
+
+  </span><span class="sh">"""</span><span class="s">
+  Context: {context}
+  </span><span class="sh">"""</span><span class="s">
+
+  Please try to give detailed answers and write your answers as an academic text, unless explicitly told otherwise.
+  Use references to literature in your answer and include a bibliography for citations that you use.
+  If you cannot provide appropriate references, tell me by the end of your answer.
+ 
+  Format your answer as follows:
+  One or multiple sentences that constitutes part of your answer (APA-style reference)
+  The rest of your answer
+  Bibliography:
+  Bulleted bibliographical entries in APA-style
+  </span><span class="sh">'''</span><span class="p">)</span>
+  
+<span class="n">system_prompt</span> <span class="o">=</span> <span class="nc">PromptTemplate</span><span class="p">(</span><span class="n">template</span><span class="o">=</span><span class="n">system_prompt_template</span><span class="p">,</span>
+                               <span class="n">input_variables</span><span class="o">=</span><span class="p">[</span><span class="sh">"</span><span class="s">context</span><span class="sh">"</span><span class="p">])</span>
+
+<span class="n">system_message_prompt</span> <span class="o">=</span> <span class="nc">SystemMessagePromptTemplate</span><span class="p">(</span><span class="n">prompt</span> <span class="o">=</span> <span class="n">system_prompt</span><span class="p">)</span>
+<span class="n">human_template</span> <span class="o">=</span> <span class="sh">"</span><span class="s">{question}</span><span class="sh">"</span>
+<span class="n">human_message_prompt</span> <span class="o">=</span> <span class="n">HumanMessagePromptTemplate</span><span class="p">.</span><span class="nf">from_template</span><span class="p">(</span><span class="n">human_template</span><span class="p">)</span>
+<span class="n">chat_prompt</span> <span class="o">=</span> <span class="n">ChatPromptTemplate</span><span class="p">.</span><span class="nf">from_messages</span><span class="p">([</span><span class="n">system_message_prompt</span><span class="p">,</span> <span class="n">human_message_prompt</span><span class="p">])</span>
+
+<span class="c1"># Set up retriever
+</span><span class="n">redundant_filter</span> <span class="o">=</span> <span class="nc">EmbeddingsRedundantFilter</span><span class="p">(</span><span class="n">embeddings</span><span class="o">=</span><span class="n">embeddings</span><span class="p">)</span>
+<span class="n">reordering</span> <span class="o">=</span> <span class="nc">LongContextReorder</span><span class="p">()</span>
+<span class="n">pipeline</span> <span class="o">=</span> <span class="nc">DocumentCompressorPipeline</span><span class="p">(</span><span class="n">transformers</span><span class="o">=</span><span class="p">[</span><span class="n">redundant_filter</span><span class="p">,</span> <span class="n">reordering</span><span class="p">])</span>
+<span class="n">retriever</span><span class="o">=</span> <span class="nc">ContextualCompressionRetriever</span><span class="p">(</span>
+  <span class="n">base_compressor</span><span class="o">=</span><span class="n">pipeline</span><span class="p">,</span> <span class="n">base_retriever</span><span class="o">=</span><span class="n">db</span><span class="p">.</span><span class="nf">as_retriever</span><span class="p">(</span><span class="n">search_type</span><span class="o">=</span><span class="sh">"</span><span class="s">similarity_score_threshold</span><span class="sh">"</span><span class="p">,</span> <span class="n">search_kwargs</span><span class="o">=</span><span class="p">{</span><span class="sh">"</span><span class="s">k</span><span class="sh">"</span> <span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="sh">"</span><span class="s">score_threshold</span><span class="sh">"</span><span class="p">:</span> <span class="p">.</span><span class="mi">75</span><span class="p">}))</span>
+ 
+<span class="c1"># Set up source file
+</span><span class="n">now</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">.</span><span class="nf">now</span><span class="p">()</span>
+<span class="n">timestamp</span> <span class="o">=</span> <span class="n">now</span><span class="p">.</span><span class="nf">strftime</span><span class="p">(</span><span class="sh">"</span><span class="s">%Y%m%d_%H%M%S</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">filename</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="s">answers/answers_</span><span class="si">{</span><span class="n">timestamp</span><span class="si">}</span><span class="s">.org</span><span class="sh">"</span>
+<span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="sh">'</span><span class="s">w</span><span class="sh">'</span><span class="p">)</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
+  <span class="nb">file</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="sh">"</span><span class="s">#+OPTIONS: toc:nil author:nil</span><span class="se">\n</span><span class="sh">"</span><span class="p">)</span>
+  <span class="nb">file</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">#+TITLE: Answers and sources for session started on </span><span class="si">{</span><span class="n">timestamp</span><span class="si">}</span><span class="se">\n\n</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+<p>You’ll see that this chunk starts with the definition of a function that removes various characters from strings that you pass it.
+I wrote this function to clean up the strings that I have the app write to a log to report its sources (the log that is stored in the answers folder).
+The part of the script where these strings are created are shown further below.
+Basically, these strings are reconstructed from the metadata that the <code class="language-plaintext highlighter-rouge">ConversationalRetrievalChain</code> extracts from the fragments that it retrieves.
+These bits of metadata originate from the bibtex entries of my Zotero library (<a href="/blog/2023/using-llms-with-retrieval-augmentation-through-langchain/">see my first post</a>). 
+Given that they these bits of metadata often contain characters that make them look messy, I created the <code class="language-plaintext highlighter-rouge">string_cleanup</code> function to tidy them up a bit.</p>
+
+<p>After defining this function we do some basic setting up.
+We first set our OpenAI API key as an environment variable and we make the <code class="language-plaintext highlighter-rouge">openai</code> module aware of our API key as well.
+We then load the <code class="language-plaintext highlighter-rouge">OpenAIEmbeddings</code> model, which is currently the <code class="language-plaintext highlighter-rouge">text-embedding-ada-002</code> model.
+We need to pass this model as an argument when loading our vector store.
+By doing so, we clarify what type of embeddings are stored in the vector store, so that we can make use of them.
+We then load the actual vector store itself and store it in an object we simply call <code class="language-plaintext highlighter-rouge">db</code>.
+We then set up our callback handler.
+Finally, we set up our <code class="language-plaintext highlighter-rouge">ConversationBufferWindowMemory</code>.
+We need to tell it about the keys by which we identify our chat history, our questions and the output of the model after answering our questions.
+We can set the window size of the memory with the <code class="language-plaintext highlighter-rouge">k</code> argument, which in this example is set to three.
+This means it will remember up to three messages of conversation.</p>
+
+<p>After this we write out our prompt template.
+You can see that we tell the LLM to assume a certain role and that we offer instructions on how to respond.
+I do not have a lot of experience with prompt engineering yet, so this prompt template probably can be improved.
+Also notice that I include one variable in this template, which is called <code class="language-plaintext highlighter-rouge">context</code>. 
+This context consists of the retrieved fragments of text associated with our question.
+After writing out the prompt template, we create the actual template and relate our <code class="language-plaintext highlighter-rouge">context</code> variable to it.
+We then specify that this is the system message template. 
+We create a separate template for the human messages, which simply consist of our <code class="language-plaintext highlighter-rouge">question</code> variable.
+We then create a chat prompt from the system message template and the human message template.
+We will later include this last prompt in our <code class="language-plaintext highlighter-rouge">ConversationalRetrievalChain</code>.</p>
+
+<p>Next, we set up our retriever.
+We first set up the redundancy filter and then the <code class="language-plaintext highlighter-rouge">LongContextReorder</code> object. 
+We combine these in a pipeline, which is itself included in a <code class="language-plaintext highlighter-rouge">ContextualCompressionRetriever</code>, along with the vector store, which acts as our ‘base retriever’.
+It is possible to simply use the vector store as a retriever directly, but then we would not have the benefits that the redundancy filter and <code class="language-plaintext highlighter-rouge">LongContextReorder</code> object give us.
+We pass several arguments to our base retriever, namely:</p>
+<ul>
+  <li>an argument that indicates we want to use a similarity score threshold to select documents;</li>
+  <li>the number of documents to retrieve (<code class="language-plaintext highlighter-rouge">k</code>);</li>
+  <li>the similarity score threshold, which is the minimum similarity score that a fragment of text should have to be considered for retrieval.</li>
+</ul>
+
+<p>Twenty fragments is a pretty large number of fragments to retrieve, given that we work with a limited context window and given that longer contexts also have the unfortunate consequence that not all of it will be equally considered by the LLM.
+ However, I have set this relatively high number because we also do some filtering and reordering as part of our pipeline, which compensates somewhat from the downsides of retrieving many fragments.
+We will later integrate our <code class="language-plaintext highlighter-rouge">ContextualCompressionRetriever</code> in our <code class="language-plaintext highlighter-rouge">ConversationalRetrievalChain</code>.</p>
+
+<p>The last thing we do in this chunk of the script is to set up the log file that we wish to write to the answers folder.
+I opted to use org files for this, since I work a lot with org files in general.
+We give the file a filename that includes a timestamp and we write a header and a title to the file itself.
+We will populate it further during our conversation with the LLM.</p>
+
+<h2 id="chat-start-and-chat-settings-update">Chat start and chat settings update</h2>
+<p>The next chunk of our script is a shot one:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Prepare settings
+</span><span class="nd">@cl.on_chat_start</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">start</span><span class="p">():</span>
+  <span class="n">settings</span> <span class="o">=</span> <span class="k">await</span> <span class="n">cl</span><span class="p">.</span><span class="nc">ChatSettings</span><span class="p">(</span>
+    <span class="p">[</span>
+      <span class="nc">Select</span><span class="p">(</span>
+        <span class="nb">id</span><span class="o">=</span><span class="sh">"</span><span class="s">Model</span><span class="sh">"</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="sh">"</span><span class="s">OpenAI - Model</span><span class="sh">"</span><span class="p">,</span>
+        <span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="sh">"</span><span class="s">gpt-3.5-turbo-16k</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">gpt-4</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">gpt-4-32k</span><span class="sh">"</span><span class="p">],</span>
+        <span class="n">initial_index</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+      <span class="p">),</span>
+      <span class="nc">Slider</span><span class="p">(</span>
+        <span class="nb">id</span><span class="o">=</span><span class="sh">"</span><span class="s">Temperature</span><span class="sh">"</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="sh">"</span><span class="s">OpenAI - Temperature</span><span class="sh">"</span><span class="p">,</span>
+        <span class="n">initial</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="nb">max</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+        <span class="n">step</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+      <span class="p">),</span>
+    <span class="p">]</span>
+  <span class="p">).</span><span class="nf">send</span><span class="p">()</span>
+  <span class="k">await</span> <span class="nf">setup_chain</span><span class="p">(</span><span class="n">settings</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>In this chunk we define the chat settings that the user can change on the fly, which is a feature of chainlit apps. 
+In this case we allow the user to select different types of models that OpenAI has on offer through its API.
+I default to the <code class="language-plaintext highlighter-rouge">gpt-3.5-turbo-16k</code> model, because it is still relatively cheap and has a longer context window than the <code class="language-plaintext highlighter-rouge">gpt-3.5-turbo</code> model.
+I have found that, with the number of fragments that I retrieve, this longer context window is often necessary.
+The user can also set temperature for the model, which controls how deterministic its answers will be: A higher temperature will allow for more variability in answers.</p>
+
+<p>We could include more settings if we wanted. 
+For example, in another, more elaborate tool that I made, I also allow the user to set the number of text fragments retrieved by the <code class="language-plaintext highlighter-rouge">base retriever</code>.
+It should also be possible to control the size of the memory window using chat settings.</p>
+
+<p>The next chunk of the script is called whenever one of the above chat settings is changed, but it is also run the outset, when a new chat is started:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># When settings are updated
+</span><span class="nd">@cl.on_settings_update</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">setup_chain</span><span class="p">(</span><span class="n">settings</span><span class="p">):</span>
+  <span class="c1"># Set llm
+</span>  <span class="n">llm</span><span class="o">=</span><span class="nc">ChatOpenAI</span><span class="p">(</span>
+    <span class="n">temperature</span><span class="o">=</span><span class="n">settings</span><span class="p">[</span><span class="sh">"</span><span class="s">Temperature</span><span class="sh">"</span><span class="p">],</span>
+    <span class="n">model</span><span class="o">=</span><span class="n">settings</span><span class="p">[</span><span class="sh">"</span><span class="s">Model</span><span class="sh">"</span><span class="p">],</span>
+  <span class="p">)</span>
+ 
+  <span class="c1"># Set up conversational chain
+</span>  <span class="n">chain</span> <span class="o">=</span> <span class="n">ConversationalRetrievalChain</span><span class="p">.</span><span class="nf">from_llm</span><span class="p">(</span>
+    <span class="n">llm</span><span class="o">=</span><span class="n">llm</span><span class="p">,</span>
+    <span class="n">retriever</span><span class="o">=</span><span class="n">retriever</span><span class="p">,</span>
+    <span class="n">chain_type</span><span class="o">=</span><span class="sh">"</span><span class="s">stuff</span><span class="sh">"</span><span class="p">,</span>
+    <span class="n">return_source_documents</span> <span class="o">=</span> <span class="bp">True</span><span class="p">,</span>
+    <span class="n">return_generated_question</span> <span class="o">=</span> <span class="bp">True</span><span class="p">,</span>
+    <span class="n">combine_docs_chain_kwargs</span><span class="o">=</span><span class="p">{</span><span class="sh">'</span><span class="s">prompt</span><span class="sh">'</span><span class="p">:</span> <span class="n">chat_prompt</span><span class="p">},</span>
+    <span class="n">memory</span><span class="o">=</span><span class="n">memory</span><span class="p">,</span>
+    <span class="n">condense_question_llm</span> <span class="o">=</span> <span class="nc">ChatOpenAI</span><span class="p">(</span><span class="n">temperature</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="sh">'</span><span class="s">gpt-3.5-turbo</span><span class="sh">'</span><span class="p">),</span>
+  <span class="p">)</span>
+  <span class="n">cl</span><span class="p">.</span><span class="n">user_session</span><span class="p">.</span><span class="nf">set</span><span class="p">(</span><span class="sh">"</span><span class="s">chain</span><span class="sh">"</span><span class="p">,</span> <span class="n">chain</span><span class="p">)</span>
+</code></pre></div></div>
+<p>Here, we first specify the LLM that we will be conversing with. 
+As you can see, the parameters of this model are retrieved from the chat settings, namely the model name and its temperature.</p>
+
+<p>We then finally get to setting up the <code class="language-plaintext highlighter-rouge">ConversationalRetrievalChain</code>.
+We clarify what LLM we wish to converse with.
+We then tell the chain what retriever we will be using (our <code class="language-plaintext highlighter-rouge">ContextualCompressionRetriever</code>). 
+We also define <em>how</em> our documents are integrated in the <code class="language-plaintext highlighter-rouge">context</code> variable of our prompts, for which <a href="https://python.langchain.com/docs/modules/chains/document/" rel="external nofollow noopener" target="_blank">the LangChain framework offers several options</a>.
+I use the simplest one, ‘stuff documents’, which basically stuffs also retrieved fragments in the context.
+The other options usually involve iterating over our fragments in different ways.
+This is more time consuming and it often involves additional calls to LLMs, which makes them more expensive options.
+So far, I have not seen great benefit from using any of these other options.
+We tell the chain to also return the ‘source documents’, which allows us to access the actual fragments of text that our retriever retrieves.
+We need to do this if we want to enable our tool to report its sources in the log file that we have it create.
+For similar reasons, we also tell the chain to retun the question that it generated.
+We then specify the prompt that we want the chain to use, which is the chat prompt we created earlier.
+We also specify the memory object that the chain can use to memorize our conversation, such that we can have an actual conversation with the LLM.
+Finally, in this we case we also specify the model that the chain can use to condense questions (which is something it apparently always does).
+By default, it will use the model that we set with the <code class="language-plaintext highlighter-rouge">llm</code> parameter, but I force it to use the <code class="language-plaintext highlighter-rouge">gpt-3.5-turbo</code> model, because it is unnecessary to use a more expensive model for this.</p>
+
+<p>So now we have our <code class="language-plaintext highlighter-rouge">ConversationalRetrievalChain</code> all set up!</p>
+<h2 id="messages">Messages</h2>
+<p>The last chunk of our script basically handles what happens when messages are being sent to an LLM:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@cl.on_message</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+  <span class="n">chain</span> <span class="o">=</span> <span class="n">cl</span><span class="p">.</span><span class="n">user_session</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">chain</span><span class="sh">"</span><span class="p">)</span>
+  <span class="n">cb</span> <span class="o">=</span> <span class="n">cl</span><span class="p">.</span><span class="nc">LangchainCallbackHandler</span><span class="p">()</span>
+  <span class="n">cb</span><span class="p">.</span><span class="n">answer_reached</span> <span class="o">=</span> <span class="bp">True</span>
+  <span class="n">res</span> <span class="o">=</span> <span class="k">await</span> <span class="n">cl</span><span class="p">.</span><span class="nf">make_async</span><span class="p">(</span><span class="n">chain</span><span class="p">)(</span><span class="n">message</span><span class="p">.</span><span class="n">content</span><span class="p">,</span> <span class="n">callbacks</span><span class="o">=</span><span class="p">[</span><span class="n">cb</span><span class="p">])</span>
+  <span class="n">question</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="sh">"</span><span class="s">question</span><span class="sh">"</span><span class="p">]</span>
+  <span class="n">answer</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="sh">"</span><span class="s">answer</span><span class="sh">"</span><span class="p">]</span>
+  <span class="n">answer</span> <span class="o">+=</span> <span class="sh">"</span><span class="se">\n\n</span><span class="s"> Sources:</span><span class="se">\n\n</span><span class="sh">"</span>
+  <span class="n">sources</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="sh">"</span><span class="s">source_documents</span><span class="sh">"</span><span class="p">]</span>
+  <span class="n">print_sources</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="sh">'</span><span class="s">a</span><span class="sh">'</span><span class="p">)</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
+    <span class="nb">file</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="sh">"</span><span class="s">* Query:</span><span class="se">\n</span><span class="sh">"</span><span class="p">)</span>
+    <span class="nb">file</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="n">question</span><span class="p">)</span>
+    <span class="nb">file</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="sh">"</span><span class="se">\n</span><span class="sh">"</span><span class="p">)</span>
+    <span class="nb">file</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="sh">"</span><span class="s">* Answer:</span><span class="se">\n</span><span class="sh">"</span><span class="p">)</span>
+    <span class="nb">file</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="sh">'</span><span class="s">answer</span><span class="sh">'</span><span class="p">])</span>
+    <span class="nb">file</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="sh">"</span><span class="se">\n</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">counter</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">source</span> <span class="ow">in</span> <span class="n">sources</span><span class="p">:</span>
+      <span class="n">reference</span> <span class="o">=</span> <span class="sh">"</span><span class="s">INVALID REF</span><span class="sh">"</span>
+      <span class="k">if</span> <span class="n">source</span><span class="p">.</span><span class="n">metadata</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">ENTRYTYPE</span><span class="sh">'</span><span class="p">)</span> <span class="o">==</span> <span class="sh">'</span><span class="s">article</span><span class="sh">'</span><span class="p">:</span>
+        <span class="n">reference</span> <span class="o">=</span> <span class="p">(</span>
+          <span class="nf">string_cleanup</span><span class="p">(</span><span class="n">source</span><span class="p">.</span><span class="n">metadata</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">author</span><span class="sh">'</span><span class="p">,</span> <span class="sh">""</span><span class="p">))</span> <span class="o">+</span> <span class="sh">"</span><span class="s"> (</span><span class="sh">"</span> <span class="o">+</span>
+          <span class="nf">string_cleanup</span><span class="p">(</span><span class="n">source</span><span class="p">.</span><span class="n">metadata</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">year</span><span class="sh">'</span><span class="p">,</span> <span class="sh">""</span><span class="p">))</span> <span class="o">+</span> <span class="sh">"</span><span class="s">). </span><span class="sh">"</span> <span class="o">+</span>
+          <span class="nf">string_cleanup</span><span class="p">(</span><span class="n">source</span><span class="p">.</span><span class="n">metadata</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">title</span><span class="sh">'</span><span class="p">,</span> <span class="sh">""</span><span class="p">))</span> <span class="o">+</span> <span class="sh">"</span><span class="s">. </span><span class="sh">"</span> <span class="o">+</span>
+          <span class="nf">string_cleanup</span><span class="p">(</span><span class="n">source</span><span class="p">.</span><span class="n">metadata</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">journal</span><span class="sh">'</span><span class="p">,</span> <span class="sh">""</span><span class="p">))</span> <span class="o">+</span> <span class="sh">"</span><span class="s">, </span><span class="sh">"</span> <span class="o">+</span>
+          <span class="nf">string_cleanup</span><span class="p">(</span><span class="n">source</span><span class="p">.</span><span class="n">metadata</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">volume</span><span class="sh">'</span><span class="p">,</span> <span class="sh">""</span><span class="p">))</span> <span class="o">+</span> <span class="sh">"</span><span class="s"> (</span><span class="sh">"</span> <span class="o">+</span>
+          <span class="nf">string_cleanup</span><span class="p">(</span><span class="n">source</span><span class="p">.</span><span class="n">metadata</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">number</span><span class="sh">'</span><span class="p">,</span> <span class="sh">""</span><span class="p">))</span> <span class="o">+</span> <span class="sh">"</span><span class="s">): </span><span class="sh">"</span> <span class="o">+</span> 
+          <span class="nf">string_cleanup</span><span class="p">(</span><span class="n">source</span><span class="p">.</span><span class="n">metadata</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">pages</span><span class="sh">'</span><span class="p">,</span> <span class="sh">""</span><span class="p">))</span> <span class="o">+</span> <span class="sh">"</span><span class="s">.</span><span class="sh">"</span><span class="p">)</span>
+      <span class="k">elif</span> <span class="n">source</span><span class="p">.</span><span class="n">metadata</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">ENTRYTYPE</span><span class="sh">'</span><span class="p">)</span> <span class="o">==</span> <span class="sh">'</span><span class="s">book</span><span class="sh">'</span><span class="p">:</span>
+        <span class="n">author</span> <span class="o">=</span> <span class="sh">""</span>
+        <span class="k">if</span> <span class="sh">'</span><span class="s">author</span><span class="sh">'</span> <span class="ow">in</span> <span class="n">source</span><span class="p">.</span><span class="n">metadata</span><span class="p">:</span>
+          <span class="n">author</span> <span class="o">=</span> <span class="nf">string_cleanup</span><span class="p">(</span><span class="n">source</span><span class="p">.</span><span class="n">metadata</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">author</span><span class="sh">'</span><span class="p">,</span> <span class="sh">"</span><span class="s">NA</span><span class="sh">"</span><span class="p">))</span>
+        <span class="k">elif</span> <span class="sh">'</span><span class="s">editor</span><span class="sh">'</span> <span class="ow">in</span> <span class="n">source</span><span class="p">.</span><span class="n">metadata</span><span class="p">:</span>
+          <span class="n">author</span> <span class="o">=</span> <span class="nf">string_cleanup</span><span class="p">(</span><span class="n">source</span><span class="p">.</span><span class="n">metadata</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">editor</span><span class="sh">'</span><span class="p">,</span> <span class="sh">"</span><span class="s">NA</span><span class="sh">"</span><span class="p">))</span>
+        <span class="n">reference</span> <span class="o">=</span> <span class="p">(</span>
+          <span class="n">author</span> <span class="o">+</span> <span class="sh">"</span><span class="s"> (</span><span class="sh">"</span> <span class="o">+</span> 
+          <span class="nf">string_cleanup</span><span class="p">(</span><span class="n">source</span><span class="p">.</span><span class="n">metadata</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">year</span><span class="sh">'</span><span class="p">,</span> <span class="sh">""</span><span class="p">))</span> <span class="o">+</span> <span class="sh">"</span><span class="s">). </span><span class="sh">"</span> <span class="o">+</span>
+          <span class="nf">string_cleanup</span><span class="p">(</span><span class="n">source</span><span class="p">.</span><span class="n">metadata</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">title</span><span class="sh">'</span><span class="p">,</span> <span class="sh">""</span><span class="p">))</span> <span class="o">+</span> <span class="sh">"</span><span class="s">. </span><span class="sh">"</span> <span class="o">+</span>
+          <span class="nf">string_cleanup</span><span class="p">(</span><span class="n">source</span><span class="p">.</span><span class="n">metadata</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">address</span><span class="sh">'</span><span class="p">,</span> <span class="sh">""</span><span class="p">))</span> <span class="o">+</span> <span class="sh">"</span><span class="s">: </span><span class="sh">"</span> <span class="o">+</span>
+          <span class="nf">string_cleanup</span><span class="p">(</span><span class="n">source</span><span class="p">.</span><span class="n">metadata</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">publisher</span><span class="sh">'</span><span class="p">,</span> <span class="sh">""</span><span class="p">))</span> <span class="o">+</span> <span class="sh">"</span><span class="s">.</span><span class="sh">"</span><span class="p">)</span>
+      <span class="k">elif</span> <span class="n">source</span><span class="p">.</span><span class="n">metadata</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">ENTRYTYPE</span><span class="sh">'</span><span class="p">)</span> <span class="o">==</span> <span class="sh">'</span><span class="s">incollection</span><span class="sh">'</span><span class="p">:</span>
+        <span class="n">reference</span> <span class="o">=</span> <span class="p">(</span>
+          <span class="nf">string_cleanup</span><span class="p">(</span><span class="n">source</span><span class="p">.</span><span class="n">metadata</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">author</span><span class="sh">'</span><span class="p">,</span> <span class="sh">""</span><span class="p">))</span> <span class="o">+</span> <span class="sh">"</span><span class="s"> (</span><span class="sh">"</span> <span class="o">+</span>
+          <span class="nf">string_cleanup</span><span class="p">(</span><span class="n">source</span><span class="p">.</span><span class="n">metadata</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">year</span><span class="sh">'</span><span class="p">,</span> <span class="sh">""</span><span class="p">))</span> <span class="o">+</span> <span class="sh">"</span><span class="s">). </span><span class="sh">"</span> <span class="o">+</span>
+          <span class="nf">string_cleanup</span><span class="p">(</span><span class="n">source</span><span class="p">.</span><span class="n">metadata</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">title</span><span class="sh">'</span><span class="p">,</span> <span class="sh">""</span><span class="p">))</span> <span class="o">+</span> <span class="sh">"</span><span class="s">. </span><span class="sh">"</span> <span class="o">+</span>
+          <span class="sh">"</span><span class="s">In: </span><span class="sh">"</span> <span class="o">+</span>
+          <span class="nf">string_cleanup</span><span class="p">(</span><span class="n">source</span><span class="p">.</span><span class="n">metadata</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">editor</span><span class="sh">'</span><span class="p">,</span> <span class="sh">""</span><span class="p">))</span> <span class="o">+</span> 
+          <span class="sh">"</span><span class="s"> (Eds.), </span><span class="sh">"</span> <span class="o">+</span>
+          <span class="nf">string_cleanup</span><span class="p">(</span><span class="n">source</span><span class="p">.</span><span class="n">metadata</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">booktitle</span><span class="sh">'</span><span class="p">,</span> <span class="sh">""</span><span class="p">))</span> <span class="o">+</span> <span class="sh">"</span><span class="s">, </span><span class="sh">"</span> <span class="o">+</span>
+          <span class="nf">string_cleanup</span><span class="p">(</span><span class="n">source</span><span class="p">.</span><span class="n">metadata</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">pages</span><span class="sh">'</span><span class="p">,</span> <span class="sh">""</span><span class="p">))</span> <span class="o">+</span> <span class="sh">"</span><span class="s">.</span><span class="sh">"</span><span class="p">)</span>
+      <span class="k">else</span><span class="p">:</span>
+        <span class="n">author</span> <span class="o">=</span> <span class="sh">""</span>
+        <span class="k">if</span> <span class="sh">'</span><span class="s">author</span><span class="sh">'</span> <span class="ow">in</span> <span class="n">source</span><span class="p">.</span><span class="n">metadata</span><span class="p">:</span>
+          <span class="n">author</span> <span class="o">=</span> <span class="nf">string_cleanup</span><span class="p">(</span><span class="n">source</span><span class="p">.</span><span class="n">metadata</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">author</span><span class="sh">'</span><span class="p">,</span> <span class="sh">"</span><span class="s">NA</span><span class="sh">"</span><span class="p">))</span>
+        <span class="k">elif</span> <span class="sh">'</span><span class="s">editor</span><span class="sh">'</span> <span class="ow">in</span> <span class="n">source</span><span class="p">.</span><span class="n">metadata</span><span class="p">:</span>
+          <span class="n">author</span> <span class="o">=</span> <span class="nf">string_cleanup</span><span class="p">(</span><span class="n">source</span><span class="p">.</span><span class="n">metadata</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">editor</span><span class="sh">'</span><span class="p">,</span> <span class="sh">"</span><span class="s">NA</span><span class="sh">"</span><span class="p">))</span>
+        <span class="n">reference</span> <span class="o">=</span> <span class="p">(</span>
+          <span class="nf">string_cleanup</span><span class="p">(</span><span class="n">source</span><span class="p">.</span><span class="n">metadata</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">author</span><span class="sh">'</span><span class="p">,</span> <span class="sh">""</span><span class="p">))</span> <span class="o">+</span> <span class="sh">"</span><span class="s"> (</span><span class="sh">"</span> <span class="o">+</span>
+          <span class="nf">string_cleanup</span><span class="p">(</span><span class="n">source</span><span class="p">.</span><span class="n">metadata</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">year</span><span class="sh">'</span><span class="p">,</span> <span class="sh">""</span><span class="p">))</span> <span class="o">+</span> <span class="sh">"</span><span class="s">). </span><span class="sh">"</span> <span class="o">+</span>
+          <span class="nf">string_cleanup</span><span class="p">(</span><span class="n">source</span><span class="p">.</span><span class="n">metadata</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">title</span><span class="sh">'</span><span class="p">,</span> <span class="sh">""</span><span class="p">))</span> <span class="o">+</span> <span class="sh">"</span><span class="s">.</span><span class="sh">"</span><span class="p">)</span>
+      <span class="k">if</span> <span class="n">source</span><span class="p">.</span><span class="n">metadata</span><span class="p">[</span><span class="sh">'</span><span class="s">source</span><span class="sh">'</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">print_sources</span><span class="p">:</span>
+        <span class="n">print_sources</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">source</span><span class="p">.</span><span class="n">metadata</span><span class="p">[</span><span class="sh">'</span><span class="s">source</span><span class="sh">'</span><span class="p">])</span>
+        <span class="n">answer</span> <span class="o">+=</span> <span class="sh">'</span><span class="s">- </span><span class="sh">'</span>
+        <span class="n">answer</span> <span class="o">+=</span> <span class="n">reference</span>
+        <span class="n">answer</span> <span class="o">+=</span> <span class="sh">'</span><span class="se">\n</span><span class="sh">'</span>
+      <span class="nb">file</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">** Document_</span><span class="si">{</span><span class="n">counter</span><span class="si">}</span><span class="s">:</span><span class="se">\n</span><span class="s">- </span><span class="sh">"</span><span class="p">)</span>
+      <span class="nb">file</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="n">reference</span><span class="p">)</span>
+      <span class="nb">file</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="sh">"</span><span class="se">\n</span><span class="s">- </span><span class="sh">"</span><span class="p">)</span>
+      <span class="nb">file</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">basename</span><span class="p">(</span><span class="n">source</span><span class="p">.</span><span class="n">metadata</span><span class="p">[</span><span class="sh">'</span><span class="s">source</span><span class="sh">'</span><span class="p">]))</span>
+      <span class="nb">file</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="sh">"</span><span class="se">\n</span><span class="sh">"</span><span class="p">)</span>
+      <span class="nb">file</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="sh">"</span><span class="s">*** Content:</span><span class="se">\n</span><span class="sh">"</span><span class="p">)</span>
+      <span class="nb">file</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="n">source</span><span class="p">.</span><span class="n">page_content</span><span class="p">)</span>
+      <span class="nb">file</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="sh">"</span><span class="se">\n\n</span><span class="sh">"</span><span class="p">)</span>
+      <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
+
+  <span class="k">await</span> <span class="n">cl</span><span class="p">.</span><span class="nc">Message</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="n">answer</span><span class="p">).</span><span class="nf">send</span><span class="p">()</span>
+</code></pre></div></div>
+<p>This chunk is pretty lengthy, but much of it is a somewhat convoluted way of having the tool report its sources, both in is responses to the user, but also in the log file that we write to the answers folder.</p>
+
+<p>The chunk more or less starts with a specification of the chain that we are using (the one we just created).
+We then define our callback handler.
+The <code class="language-plaintext highlighter-rouge">res</code> object is what we store the response of the LLM in.
+It consists of several parts, including the question that we asked (remember that we told our <code class="language-plaintext highlighter-rouge">ConversationalRetrievalChain</code> to return the question), the answer to our question, and the source documents.</p>
+
+<p>As you can see, we extend the original answer of the model with a list of our sources. 
+Most of what you see in the remainder of the chunk are different approaches to formatting these sources, depending on the type of source it is.
+We retrieve various metadata from our sources to format the actual references.
+As mentioned before, we also include these references in our log file, along with our question and the answer that the LLM gave us.</p>
+
+<h2 id="a-short-demonstration">A short demonstration</h2>
+<p>Now that we have our complete script, let us actually use it.</p>
+
+<p>We can start our chainlit app by going to its main folder and typing the following command:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>chainlit run ask_cl.py
+</code></pre></div></div>
+<p>This will open a browser window in which we are greated with a default readme file (the chainlit.md file).
+As mentioned previously, we can change this file as we wish.
+My version of the tool looks as shown in the picture below.</p>
+
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        <figure>
+
+  <picture>
+    
+    <source class="responsive-img-srcset" media="(max-width: 480px)" srcset="/assets/img/chainlit_welcome-480.webp"></source>
+    <source class="responsive-img-srcset" media="(max-width: 800px)" srcset="/assets/img/chainlit_welcome-800.webp"></source>
+    <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="/assets/img/chainlit_welcome-1400.webp"></source>
+    
+
+    <!-- Fallback to the original file -->
+    <img src="/assets/img/chainlit_welcome.png" class="img-fluid rounded z-depth-1" width="auto" height="auto" data-zoomable="" style="margin:auto; display:block" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+  </picture>
+
+</figure>
+
+    </div>
+</div>
+<div class="caption">
+The chainlit interface once we run our app.
+</div>
+
+<p>We can now start asking our app questions.
+In the example shown below, I asked the app what “chains of action” are, a concept used by Theodore Schatzki in his version of social practice theories.
+The answer that we get is pretty good.
+Also notice how the app reports the sources it consulted, which are papers that I have in my Zotero library.</p>
+
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        <figure>
+
+  <picture>
+    
+    <source class="responsive-img-srcset" media="(max-width: 480px)" srcset="/assets/img/chainlit_answer_schatzki-480.webp"></source>
+    <source class="responsive-img-srcset" media="(max-width: 800px)" srcset="/assets/img/chainlit_answer_schatzki-800.webp"></source>
+    <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="/assets/img/chainlit_answer_schatzki-1400.webp"></source>
+    
+
+    <!-- Fallback to the original file -->
+    <img src="/assets/img/chainlit_answer_schatzki.png" class="img-fluid rounded z-depth-1" width="auto" height="auto" data-zoomable="" style="margin:auto; display:block" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+  </picture>
+
+</figure>
+
+    </div>
+</div>
+<div class="caption">
+The chainlit interface once we run our app.
+</div>
+
+<p>Let us also take a look at part of the answer file that has been created and populated in the meantime:</p>
+<pre><code class="language-org">#+OPTIONS: toc:nil author:nil
+#+TITLE: Answers and sources for session started on 20231023_222003
+
+* Query:
+What are chains of action?
+* Answer:
+Chains of action refer to a series of performances or actions in which each member of the chain responds to the preceding activity, what was said, or a change in the world brought about by the previous activity. These chains link individuals and their actions, forming a temporal thread that connects their pasts and presents. Chains of action can occur within and between bundles and constellations, and they play a crucial role in shaping social life and bringing about changes in practices, arrangements, and bundles. (Schatzki, 2016) 
+
+Bibliography:
+Schatzki, T. R. (2016). Chains of action and the plenum of practices. In The Timespace of Human Activity: On Performance, Society, and History as Indeterminate Teleological Events (pp. 67-68). Franz Steiner Verlag.
+** Document_1:
+- Schatzki, Theodore R. (2016). Keeping Track of Large Phenomena. Geographische Zeitschrift, 104 (): 4--24.
+- Schatzki_2016_Geographische Zeitschrift.txt
+*** Content:
+(7) Interactions, as noted, form one sort of action chain, namely, those encompassing reciprocal reactions by two or more people. Subtypes include exchange,
+teamwork, conversation, communication, and the transmission of information. (These concepts can also be used to name nexuses of chains: compare two
+people exchanging presents in person to two tribes exchanging gifts over several months.) Other types of chain are imitation (in a more intuitive sense than
+Tarde’s ubiquitous appropriation) and governance (intentional shaping and influencing). Beyond these and other named types of chains, social life houses an
+immense number of highly contingent and haphazard chains of unnamed types
+that often go uncognized and unrecognized yet build a formative unfolding rhizomatic structure in social life.
+4. Chains of Action and the Plenum of Practices
+Individualists can welcome the idea of action chains. Indeed, unintentional consequences of action, the existence of which is central to the individualist outlook, can
+be construed as results of action chains. Contrary to individualists, however, practice
+theorists do not believe that action chains occur in a vacuum, less metaphorically, that
+they occur only in a texture formed by more individuals and their actions. Rather,
+chains transpire in the plenum of practices. This implies that they propagate within
+and between bundles and constellations.
+
+** Document_2:
+- Schatzki, Theodore R. (2010). The Timespace of Human Activity: On Performance, Society, and History as Indeterminate Teleological Events. Lanham, Md: Lexington Books.
+- Schatzki_2010_The timespace of human activity.txt
+*** Content:
+The second type of sinew embraces chains of action. Lives hang together
+when chains of action pass through and thereby link them. A chain of ac-
+tion is a series of performances, each member of which responds either to
+the preceding activity in the series, to what the previous activity said, or to a
+change in the world that the preceding activity brought about. For example,
+when a person taking a horse farm tour drops a map on the ground, and the
+tour leader picks it up and puts it in a trash receptacle, their lives are linked
+Activity Timespace and Social Life 67
+
+by a chain of action (which also connects them to the people who installed
+the receptacle). Conversations, to take another example, are chains of action
+in which people respond to what others say or to the saying of it. Chains of
+action are configurations of interwoven temporality. For responding to an
+action, to something said, or to a change in the world is the past dimension of
+activity. Each link in a chain of action thus involves some person’s past, and
+a chain comprising multiple links strings together the pasts and presents of
+different people.
+</code></pre>
+
+<p>You can see that it lists my question, the answer that I was given, and the various fragments of text on which the answer was based.
+This not only allows us to double check the answers that I got, but also to quickly identify parts of different papers that we might want to look into more.</p>
+
+<h2 id="just-the-beginning">Just the beginning</h2>
+<p>I hope this post is useful to people that would like to build something similar themselves.
+The app described in this post builds on one of the first LangChain tools that I developed (I did do a lot of fine-tuning of it over time).
+It has been incredibly useful for me, but it has more or less become redundant after I started developing an <a href="https://python.langchain.com/docs/modules/agents.html" rel="external nofollow noopener" target="_blank">agent</a> that I can use to not only chat about my literature, but also for various other things. 
+This includes retrieving information from empirical sources (e.g., news archives) and then relating conceptual knowledge to that empirical information.
+I will go into the use of agents in future posts.</p>
+
+
+    </div>
+  </article>
+
+
+  
+    
+    <br>
+    <hr>
+    <br>
+    <ul class="list-disc pl-8"></ul>
+
+    <!-- Adds related posts to the end of an article -->
+    <h2 class="text-3xl font-semibold mb-4 mt-12">Enjoy Reading This Article?</h2>
+    <p class="mb-2">Here are some more articles you might like to read next:</p>
+  
+
+  <li class="my-2">
+    <a class="text-pink-700 underline font-semibold hover:text-pink-800" href="/blog/2023/retrieval-augmentation-with-literature/">Retrieval augmentation with literature</a>
+  </li>
+
+  
+
+  <li class="my-2">
+    <a class="text-pink-700 underline font-semibold hover:text-pink-800" href="/blog/2023/simple-universal-bookmarking/">Simple universal bookmarking</a>
+  </li>
+
+  
+
+  <li class="my-2">
+    <a class="text-pink-700 underline font-semibold hover:text-pink-800" href="/blog/2023/using-llms-with-retrieval-augmentation-through-langchain/">Using LLMs with retrieval augmentation through LangChain</a>
+  </li>
+
+  
+
+  <li class="my-2">
+    <a class="text-pink-700 underline font-semibold hover:text-pink-800" href="/blog/2021/writing-academic-papers-with-org-mode/">Writing academic papers with org-mode</a>
+  </li>
+
+  
+
+  <li class="my-2">
+    <a class="text-pink-700 underline font-semibold hover:text-pink-800" href="/blog/2021/a-sign-of-life/">A sign of life</a>
+  </li>
+
+</div>
+
+      
+    </div>
+
+    <!-- Footer -->    
+    <footer class="fixed-bottom">
+      <div class="container mt-0">
+        © Copyright 2023 Wouter A. H. Spekkink. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme. Hosted by <a href="https://pages.github.com/" target="_blank" rel="external nofollow noopener">GitHub Pages</a>.
+
+      </div>
+    </footer>
+
+    <!-- JavaScripts -->
+    <!-- jQuery -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <!-- Bootsrap & MDB scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha256-fgLAgv7fyCGopR/gBNq2iW3ZKIdqIcyshnUULC4vex8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/js/mdb.min.js" integrity="sha256-NdbiivsvWt7VYCt6hYNT3h/th9vSTL4EDWeGs5SN3DA=" crossorigin="anonymous"></script>
+
+    <!-- Masonry & imagesLoaded -->
+  <script defer src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI=" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+  <script defer src="/assets/js/masonry.js" type="text/javascript"></script>
+    
+  <!-- Medium Zoom JS -->
+  <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.8/dist/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script>
+  <script defer src="/assets/js/zoom.js"></script>
+
+  <!-- Bootstrap Table -->
+  <script defer src="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.js"></script>
+
+  <!-- Load Common JS -->
+  <script src="/assets/js/no_defer.js?d633890033921b33e0ceb13d22340a9c"></script>
+  <script defer src="/assets/js/common.js?acdb9690d7641b2f8d40529018c71a01"></script>
+  <script defer src="/assets/js/copy_code.js?c9d9dd48933de3831b3ee5ec9c209cac" type="text/javascript"></script>
+
+    
+  <script async src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script>
+  <script async src="https://badge.dimensions.ai/badge.js"></script>
+
+    <!-- MathJax -->
+  <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        tags: 'ams'
+      }
+    };
+  </script>
+  <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js"></script>
+  <script defer src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+
+    
+    
+
+<!-- Scrolling Progress Bar -->
+<script type="text/javascript">
+  /*
+   * This JavaScript code has been adapted from the article 
+   * https://css-tricks.com/reading-position-indicator/ authored by Pankaj Parashar, 
+   * published on the website https://css-tricks.com on the 7th of May, 2014.
+   * Couple of changes were made to the original code to make it compatible 
+   * with the `al-foio` theme.
+   */
+  const progressBar = $("#progress");
+  /*
+   * We set up the bar after all elements are done loading.
+   * In some cases, if the images in the page are larger than the intended
+   * size they'll have on the page, they'll be resized via CSS to accomodate
+   * the desired size. This mistake, however, breaks the computations as the
+   * scroll size is computed as soon as the elements finish loading.
+   * To account for this, a minimal delay was introduced before computing the
+   * values.
+   */
+  window.onload = function () {
+    setTimeout(progressBarSetup, 50);
+  };
+  /*
+   * We set up the bar according to the browser.
+   * If the browser supports the progress element we use that.
+   * Otherwise, we resize the bar thru CSS styling
+   */
+  function progressBarSetup() {
+    if ("max" in document.createElement("progress")) {
+      initializeProgressElement();
+      $(document).on("scroll", function() {
+        progressBar.attr({ value: getCurrentScrollPosition() });
+      });
+      $(window).on("resize", initializeProgressElement);
+    } else {
+      resizeProgressBar();
+      $(document).on("scroll", resizeProgressBar);
+      $(window).on("resize", resizeProgressBar);
+    }
+  }
+  /*
+   * The vertical scroll position is the same as the number of pixels that
+   * are hidden from view above the scrollable area. Thus, a value > 0 is
+   * how much the user has scrolled from the top
+   */
+  function getCurrentScrollPosition() {
+    return $(window).scrollTop();
+  }
+
+  function initializeProgressElement() {
+    let navbarHeight = $("#navbar").outerHeight(true);
+    $("body").css({ "padding-top": navbarHeight });
+    $("progress-container").css({ "padding-top": navbarHeight });
+    progressBar.css({ top: navbarHeight });
+    progressBar.attr({
+      max: getDistanceToScroll(),
+      value: getCurrentScrollPosition(),
+    });
+  }
+  /*
+   * The offset between the html document height and the browser viewport
+   * height will be greater than zero if vertical scroll is possible.
+   * This is the distance the user can scroll
+   */
+  function getDistanceToScroll() {
+    return $(document).height() - $(window).height();
+  }
+
+  function resizeProgressBar() {
+    progressBar.css({ width: getWidthPercentage() + "%" });
+  }
+  // The scroll ratio equals the percentage to resize the bar
+  function getWidthPercentage() {
+    return (getCurrentScrollPosition() / getDistanceToScroll()) * 100;
+  }
+</script>
+
+  </body>
+</html>

@@ -1,0 +1,34 @@
+I"b<h2 id="interfacing-with-sql-databases-with-qt5">Interfacing with sql databases with Qt5</h2>
+<p>This post is on an issue that I struggled with very recently, while working on Q-SoPrA. What I wanted to achieve was relatively simple: I wanted to have tables that fetch data from sql databases, and in which one column shows check boxes to set/unset a boolean variable. The screenshot below shows an example.</p>
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        <figure>
+
+  <picture>
+    
+    <source class="responsive-img-srcset" media="(max-width: 480px)" srcset="/assets/img/table-480.webp" />
+    <source class="responsive-img-srcset" media="(max-width: 800px)" srcset="/assets/img/table-800.webp" />
+    <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="/assets/img/table-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img src="/assets/img/table.png" class="img-fluid rounded z-depth-1" width="auto" height="auto" data-zoomable="" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
+  </picture>
+
+</figure>
+
+    </div>
+</div>
+<div class="caption">
+An example table.
+</div>
+
+<p>What you see in the screen shot is <a href="http://doc.qt.io/archives/qt-4.8/qtableview.html">QTableView</a> widget that shows data that it fetches from a <a href="https://doc.qt.io/qt-5.10/qsqltablemodel.html">QSqlTableModel</a> that interfaces with a table of a <a href="https://sqlite.org/">sqlite</a> database. This post is about how to create the interactive check boxes shown in the right-most column. There are two main hurdles in getting the <a href="http://doc.qt.io/archives/qt-4.8/qtableview.html">QTableView</a> widget to work with check boxes:</p>
+<ol>
+  <li>Sqlite databases don’t actually support boolean variables. You can use an integer variable to ‘simulate’ a boolean variable by setting it to <code class="language-plaintext highlighter-rouge">0</code>(for <code class="language-plaintext highlighter-rouge">false</code>) or <code class="language-plaintext highlighter-rouge">1</code> (for <code class="language-plaintext highlighter-rouge">true</code>), but you will of course need to do a bit of extra work to make the <a href="https://doc.qt.io/qt-5.10/qsqltablemodel.html">QSqlTableModel</a> properly treat it as a boolean (or something that can be switched on or off) in read &amp; write operations. This can be done by sub-classing the <a href="https://doc.qt.io/qt-5.10/qsqltablemodel.html">QSqlTableModel</a>, and re-implementing its <a href="http://doc.qt.io/qt-5/qsqltablemodel.html#flags">flags()</a>, <a href="http://doc.qt.io/qt-5/qsqltablemodel.html#data">data()</a> and <a href="http://doc.qt.io/qt-5/qsqltablemodel.html#setData">setData()</a> functions, as suggested <a href="http://www.qtcentre.org/threads/12008-QSqlTableModel-and-checkboxes-with-SQLite-database">here</a>.</li>
+  <li>But if you do that, you’ll have a quite ugly looking table, since the check boxes are all left-aligned in their column, with no obvious way to change that. In this case, the only solution seems to be to use a <a href="http://doc.qt.io/qt-5/qstyleditemdelegate.html">QStyledItemDelegate</a> to handle the <code class="language-plaintext highlighter-rouge">paint()</code> function that determines how the column is visualised. A somewhat outdated example of how to do that is offered in the <a href="https://wiki.qt.io/Technical_FAQ#How_can_I_align_the_checkboxes_in_a_view.3F">Qt FAQ</a>.</li>
+</ol>
+
+<p>For good results in my use-case, where I want to have check boxes that (1) are able to handle a ‘pretend boolean’ variable (a boolean that is actually an integer) from a sqlite database, and (2) are not all aligned to the extreme left of their column, you have to combine the two solutions mentioned above. I haven’t really encountered a worked out example of this combination, which is why I decided to provide one in this post.</p>
+
+:ET

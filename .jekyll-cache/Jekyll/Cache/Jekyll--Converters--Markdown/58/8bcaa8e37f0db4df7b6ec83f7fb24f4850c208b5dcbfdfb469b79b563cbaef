@@ -1,0 +1,4 @@
+I"<h2 id="introduction">Introduction</h2>
+<p>I wrote a non-technical post on <a href="/blog/2018/relationships-in-qsopra/">relationships in Q-SoPrA</a>. One of the things I discuss there is plotting parallel edges, that is, multiple edges between the same pair of nodes. This is something I definitely wanted to be able to do, since I am interested in looking at social arrangements (of people, places, things, etc.) that can be related to each other in various ways. If I want to look at multiple relationships at the same time, being able to visualise parallel edges is a necessity. In this post I discuss some of the details of visualising parallel edges using Qt’s tools for visualisation. For a visual impression of what parallel edges look like in Q-SoPrA, see the screenshot below.</p>
+
+:ET
