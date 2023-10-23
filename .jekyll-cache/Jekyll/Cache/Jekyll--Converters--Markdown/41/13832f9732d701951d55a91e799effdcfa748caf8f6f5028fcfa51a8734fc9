@@ -1,8 +1,0 @@
-I"Á<h2 id="intro">Intro</h2>
-<p>In the summer, I started a series of posts on using the <a href="https://python.langchain.com/docs/get_started/introduction.html">LangChain</a> framework.
-This is the second post in that series. 
-In the <a href="/blog/2023/using-llms-with-retrieval-augmentation-through-langchain/">first post</a> I introduced the idea of retrieval augmentation and vector stores and I explained the Python scripts that I use to create and update vector stores.
-In this post I go into the actual use of retrieval augmentation.
-The example I focus on here is the use of retrieval augmentation to chat with OpenAIâ€™s Large Language Models (LLMs) about the literature on my Zotero library.</p>
-
-:ET

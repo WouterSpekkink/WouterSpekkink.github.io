@@ -1,4 +1,0 @@
-I"ž<h2 id="introduction">Introduction</h2>
-<p>One of the tasks that you are likely to use Q-SoPrA for is the qualification of incident data, by assigning codes to them (see <a href="/blog/2017/getting-started-with-qsopra/">this earlier post</a> for an explanation of what incidents are). The tools you will use for this are not very different from those that you would typically use to assign codes to interviews or the contents of documents when using <a href="https://en.wikipedia.org/wiki/Computer-assisted_qualitative_data_analysis_software">CAQDAS software</a>. In Q-SoPrA, the codes that are used to qualify incident data are referred to as <em>attributes</em>.</p>
-
-:ET

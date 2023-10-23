@@ -1,8 +1,0 @@
-I"<h2 id="intro">Intro</h2>
-<p>This is going to be the first post in a series of posts on using the <a href="https://python.langchain.com/docs/get_started/introduction.html">LangChain</a> framework.
-With LangChain you can develop apps that are powered by Large Language Models (LLMs).
-I primarily use LangChain to build applications for chatting about literature in my Zotero library and other text data on my computer.
-My intention was to write a blog post that explains how to build these applications and how they work.
-However, there is too much ground to cover for a single post, so I decided to break it down into multiple posts.</p>
-
-:ET
